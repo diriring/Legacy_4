@@ -5,20 +5,20 @@
     
 <mapper namespace="com.java.s1.bankbook.BankBookDAO">
 
-	<select id="detail" parameterType="java.lang.Long" resultType="com.java.s1.bankbook.BankBookDTO">
-		SELECT * FROM BANKBOOK WHERE BOOKNUMBER = #{num}
+	<select id="detail" parameterType="BankBookDTO" resultType="BankBookDTO">
+		SELECT * FROM BANKBOOK WHERE BOOKNUMBER = #{bookNumber}
 	</select>
 	
-	<select id="list" resultType="com.java.s1.bankbook.BankBookDTO">
+	<select id="list" resultType="BankBookDTO">
 		SELECT * FROM BANKBOOK
 	</select>
 	
-	<insert id="add" parameterType="com.java.s1.bankbook.BankBookDTO">
+	<insert id="add" parameterType="BankBookDTO">
 		INSERT INTO BANKBOOK (BOOKNUMBER, BOOKNAME, BOOKCONTENTS, BOOKRATE, BOOKSALE)
 		VALUES(BANKBOOK_SEQ.NEXTVAL, #{bookName}, #{bookContents}, #{bookRate}, #{bookSale})
 	</insert>
 	
-	<delete id="delete" parameterType="com.java.s1.bankbook.BankBookDTO">
+	<delete id="delete" parameterType="BankBookDTO">
 		DELETE BANKBOOK WHERE BOOKNUMBER = #{bookNumber}
 	</delete>
 	

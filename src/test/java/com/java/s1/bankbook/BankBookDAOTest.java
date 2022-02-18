@@ -27,30 +27,32 @@ public class BankBookDAOTest extends MyJunitTest {
 	}
 	
 	//Insert
-//	@Test
+	@Test
 	public void addTest() throws Exception {
+		for(int i=0;i<10;i++) {
+			BankBookDTO bankBookDTO = new BankBookDTO();
+			bankBookDTO.setBookName("bookName" + i);
+			bankBookDTO.setBookContents("Contents" + i);
+			bankBookDTO.setBookRate(1.12 + i);
+			bankBookDTO.setBookSale(1);
+			int result = bankBookDAO.add(bankBookDTO);
+		}
 		
-		BankBookDTO bankBookDTO = new BankBookDTO();
-		bankBookDTO.setBookName("t2");
-		bankBookDTO.setBookContents("c2");
-		bankBookDTO.setBookRate(3.12);
-		bankBookDTO.setBookSale(1);
-		int result = bankBookDAO.add(bankBookDTO);
+		System.out.println("Insert Finish");
 		
-		assertEquals(1, result);
-		
+		//assertEquals(1, result);	
 	}
 	
 	//Detail
-	@Test
-	public void detailTest() throws Exception {
-		
-		BankBookDTO bankBookDTO = new BankBookDTO();
-		bankBookDTO = bankBookDAO.detail(1L);
-		
-		assertNotNull(bankBookDTO);
-		
-	}
+//	@Test
+//	public void detailTest() throws Exception {
+//		
+//		BankBookDTO bankBookDTO = new BankBookDTO();
+//		bankBookDTO = bankBookDAO.detail(1L);
+//		
+//		assertNotNull(bankBookDTO);
+//		
+//	}
 	
 	//Delete
 	@Test
