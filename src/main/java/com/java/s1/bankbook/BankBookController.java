@@ -45,4 +45,11 @@ public class BankBookController {
 		model.addAttribute("dto", bankBookDTO);
 	}
 	
+	//delete
+	@RequestMapping(value="delete", method=RequestMethod.GET)
+	public String delete(BankBookDTO bankBookDTO) throws Exception {
+		int result = bankBookService.delete(bankBookDTO);
+		return "redirect:./list";
+	}
+	
 }

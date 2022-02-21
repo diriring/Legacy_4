@@ -13,6 +13,7 @@
 	<h1>CONTENTS : ${dto.bookContents}</h1>
 	
 	<a href="./list">List</a>
+	<a href="./delete?bookNumber=${dto.bookNumber}">Delete</a>
 	
 </body>
 </html>
