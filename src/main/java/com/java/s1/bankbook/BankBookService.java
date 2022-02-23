@@ -41,4 +41,9 @@ public class BankBookService {
 		return bankBookDAO.delete(bankBookDTO);
 	}
 	
+	//update
+	public int update(BankBookDTO bankBookDTO) throws Exception {
+		return bankBookDAO.update(bankBookDTO);
+	}
+	
 }

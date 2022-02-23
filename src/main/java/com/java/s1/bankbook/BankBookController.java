@@ -16,6 +16,20 @@ public class BankBookController {
 	@Autowired
 	private BankBookService bankBookService;
 	
+	//update 이동
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public void update(BankBookDTO bankBookDTO, Model model) throws Exception {
+		bankBookDTO = bankBookService.detail(bankBookDTO);
+		model.addAttribute("dto", bankBookDTO);
+	}
+	
+	//DB에 update
+	@RequestMapping(value="update", method=RequestMethod.POST)
+	public String update(BankBookDTO bankBookDTO) throws Exception {
+		int result = bankBookService.update(bankBookDTO);
+		return "redirect:./list";
+	}
+	
 	//DB에 insert
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public String add(BankBookDTO bankBookDTO) throws Exception {
