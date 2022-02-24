@@ -23,4 +23,9 @@ public class MemberDAO {
 		return sqlSession.insert(NAMESPACE+"join", memberDTO);
 	}
 	
+	//update
+	public int update(MemberDTO memberDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"update", memberDTO);
+	}
+	
 }

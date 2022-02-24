@@ -20,4 +20,10 @@
 	<delete id="delete" parameterType="com.java.s1.notice.NoticeDTO">
 		DELETE NOTICE WHERE NOTICENUM = #{noticeNum}
 	</delete>
+	
+	<update id="update" parameterType="com.java.s1.notice.NoticeDTO">
+		UPDATE NOTICE
+		SET TITLE=#{title}, CONTENTS=#{contents}
+		WHERE NOTICENUM=#{noticeNum}
+	</update>
 </mapper>

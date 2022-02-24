@@ -7,14 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
+<link rel="stylesheet" href="/s1/resources/css/table.css">
 </head>
 <body>
 	
 	<c:import url="../template/header.jsp"></c:import>
 	
-	<h1>List Page</h1>
+	<h1 class="title">List Page</h1>
 	
-	<table>
+	<div class="main">	
+	<table class="notice_list">
 		<tr>
 			<th>제목</th><th>작성자</th><th>작성날짜</th><th>조회수</th>
 		</tr>
@@ -27,8 +29,9 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
-	<a href="./add">ADD</a>
+	<br>
+	<a class="box" href="./add">ADD</a>
+	</div>
 
 </body>
 </html>

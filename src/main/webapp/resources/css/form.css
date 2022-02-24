@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* add, update bankbook, notice에 들어갈 css 2개 */
+.title {
+	padding: 10px;
+    text-align: center;
+}
+
+.main {
+    width: 70%;
+    margin: 0 auto;
+}
+
+table {
+	width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    border-bottom: 1px solid black;
+    text-align: left;
+    line-height: 1.5;
+    margin: 0 auto
+}
+
+td {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    padding: 10px;
+}
+  
+td:first-child {
+    border-left: none;
+}

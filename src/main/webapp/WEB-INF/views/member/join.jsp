@@ -9,7 +9,7 @@
 <body>
 	<h1>Member Join Page</h1>
 	
-	<div>
+	<div class=join_main>
 		<form action="./join" method="post">
 			<fieldset>
 				<legend>ID</legend>

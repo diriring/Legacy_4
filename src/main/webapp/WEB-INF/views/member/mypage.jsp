@@ -13,6 +13,8 @@
 	<h3>${dto.name}</h3>
 	<h3>${dto.phone}</h3>
 	<h3>${dto.email}</h3>
+	
+	<a href="./update?id=${dto.id}">Update</a>
 
 </body>
 </html>

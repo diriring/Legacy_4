@@ -39,7 +39,7 @@ public class MemberDAOTest extends MyJunitTest{
 		assertNotNull(memberDTO);
 	}
 	
-	@Test
+	//@Test
 	public void mypageTest() throws Exception {
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setId("ID2");
@@ -47,6 +47,19 @@ public class MemberDAOTest extends MyJunitTest{
 		memberDTO = memberDAO.mypage(memberDTO);
 		
 		assertNotNull(memberDTO);
+	}
+	
+	@Test
+	public void updateTest() throws Exception {
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("test1");
+		memberDTO.setName("name4");
+		memberDTO.setPhone("010-4444-4444");
+		memberDTO.setEmail("name4@gmail.com");
+		
+		int result = memberDAO.update(memberDTO);
+		
+		assertEquals(1, result);
 	}
 	
 }

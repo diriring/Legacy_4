@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/* detail에 적용할 css 2개 */
+.title {
+	padding: 10px;
+   	text-align: center;
+}
+	
+.main {
+	width: 70%;
+   	margin: 0 auto;
+}
+
+table {
+	width: 100%;
+    border-spacing: 1px;
+    border-collapse: separate;
+    line-height: 1.5;
+    margin: 0 auto
+}
+
+.table_title {
+	width: 80%;
+	font-weight: bold;
+}
+
+tr {
+    padding: 10px;
+    vertical-align: top;
+}
+
+td {
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+.box {
+	padding: 3px;
+    border-radius: 20%;
+	background-color: black;
+	color: white;
+}

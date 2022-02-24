@@ -37,7 +37,7 @@ public class NoticeDAOTest extends MyJunitTest {
 		assertNotEquals(0, result);
 	}
 	
-	@Test
+	//@Test
 	public void detailTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setNoticeNum(3L);
@@ -45,11 +45,20 @@ public class NoticeDAOTest extends MyJunitTest {
 		assertNotNull(noticeDTO);
 	}
 	
-	@Test
+	//@Test
 	public void deleteTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setNoticeNum(3L);
 		int result = noticeDAO.delete(noticeDTO);
+		assertEquals(1, result);
+	}
+	
+	public void updateTest() throws Exception {
+		NoticeDTO noticeDTO = new NoticeDTO();
+		noticeDTO.setNoticeNum(41L);
+		noticeDTO.setTitle("titleupdate");
+		noticeDTO.setContents("contentupdate");
+		int result = noticeDAO.update(noticeDTO);
 		assertEquals(1, result);
 	}
 

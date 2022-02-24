@@ -19,4 +19,10 @@
 	INSERT INTO MEMBER (ID, PW, NAME, PHONE, EMAIL)
 	VALUES (#{id}, #{pw}, #{name}, #{phone}, #{email})
 	</insert>
+	
+	<update id="update" parameterType="MemberDTO">
+	UPDATE MEMBER
+	SET NAME=#{name}, PHONE=#{phone}, EMAIL=#{email}
+	WHERE ID=#{id}
+	</update>
 </mapper>
