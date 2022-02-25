@@ -7,6 +7,9 @@ public class Pager {
 	private Long startRow;
 	private Long lastRow;
 	
+	private String kind;
+	private String search;
+	
 	private Long startNum;
 	private Long lastNum;
 	boolean pre;
@@ -52,6 +55,11 @@ public class Pager {
 		//마지막 페이지 번호 조정
 		if(curBlock == totalBlock) {
 			this.lastNum = totalPage;
+		}
+		
+		//검색 결과가 없어서 total page가 0일 때
+		if(totalCount==0) {
+			this.lastNum=1L;
 		}
 	}
 	
@@ -110,5 +118,24 @@ public class Pager {
 	public void setNext(boolean next) {
 		this.next = next;
 	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		if(this.search==null) {
+			this.search="";
+		}
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}	
 	
 }

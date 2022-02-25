@@ -7,12 +7,26 @@
 	<select id="list" parameterType="Pager" resultType="com.java.s1.notice.NoticeDTO">
 		SELECT * FROM
 		(SELECT ROWNUM R, N.* FROM
-		(SELECT * FROM NOTICE WHERE NOTICENUM>0 ORDER BY NOTICENUM DESC) N)
+		(SELECT * FROM NOTICE WHERE NOTICENUM>0 AND 
+		<choose>
+			<when test="kind=='col1'">TITLE</when>
+			<when test="kind=='col2'">CONTENTS</when>
+			<otherwise>WRITER</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%'
+		ORDER BY NOTICENUM DESC) N)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
-	<select id="total" resultType="Long">
+	<select id="total" parameterType="Pager" resultType="Long">
 		SELECT COUNT(NOTICENUM) FROM NOTICE
+		WHERE NOTICENUM>0 AND 
+		<choose>
+			<when test="kind=='col1'">TITLE</when>
+			<when test="kind=='col2'">CONTENTS</when>
+			<otherwise>WRITER</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%'
 	</select>
 	
 	<select id="detail" parameterType="com.java.s1.notice.NoticeDTO" resultType="com.java.s1.notice.NoticeDTO">
