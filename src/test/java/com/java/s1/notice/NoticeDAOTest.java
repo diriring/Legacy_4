@@ -8,36 +8,49 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.java.s1.MyJunitTest;
+import com.java.s1.util.Pager;
 
 public class NoticeDAOTest extends MyJunitTest {
 
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
-	@Test
+	//@Test
 	public void check() {
 		assertNotNull(noticeDAO);
 	}
 	
-	//@Test
+	@Test
 	public void listTest() throws Exception {
-		List<NoticeDTO> ar = noticeDAO.list();
-		assertEquals(0, ar.size());
+		Pager pager = new Pager();
+		pager.makeRow();
+		List<NoticeDTO> ar = noticeDAO.list(pager);
+		System.out.println(ar.get(0).getNoticeNum());
+		assertEquals(10, ar.size());
 	}
 	
 	//@Test
 	public void addTest() throws Exception {
-		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setTitle("title");
-		noticeDTO.setContents("contents");
-		noticeDTO.setWriter("writer");
+		for(int i=3;i<150;i++) {
+			
+			NoticeDTO noticeDTO = new NoticeDTO();
+			noticeDTO.setTitle("title"+i);
+			noticeDTO.setContents("contents"+i);
+			noticeDTO.setWriter("writer"+i);
+			
+			int result = noticeDAO.add(noticeDTO);
+			
+			if(i%10==0) {
+				Thread.sleep(1000); //1초동안 멈추라는 뜻				
+			}
+		}
 		
-		int result = noticeDAO.add(noticeDTO);
+		System.out.println("Insert Finish");
 		
-		assertNotEquals(0, result);
+		//assertNotEquals(0, result);
 	}
 	
-	@Test
+	//@Test
 	public void detailTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setNoticeNum(3L);
@@ -45,7 +58,7 @@ public class NoticeDAOTest extends MyJunitTest {
 		assertNotNull(noticeDTO);
 	}
 	
-	@Test
+	//@Test
 	public void deleteTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setNoticeNum(3L);

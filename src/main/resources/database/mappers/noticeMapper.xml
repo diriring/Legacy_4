@@ -4,8 +4,15 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.java.s1.notice.NoticeDAO">
-	<select id="list" resultType="com.java.s1.notice.NoticeDTO">
-		SELECT * FROM NOTICE
+	<select id="list" parameterType="Pager" resultType="com.java.s1.notice.NoticeDTO">
+		SELECT * FROM
+		(SELECT ROWNUM R, N.* FROM
+		(SELECT * FROM NOTICE WHERE NOTICENUM>0 ORDER BY NOTICENUM DESC) N)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<select id="total" resultType="Long">
+		SELECT COUNT(NOTICENUM) FROM NOTICE
 	</select>
 	
 	<select id="detail" parameterType="com.java.s1.notice.NoticeDTO" resultType="com.java.s1.notice.NoticeDTO">
