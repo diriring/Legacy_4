@@ -12,20 +12,30 @@ public class QnaDAOTest extends MyJunitTest {
 	@Autowired
 	private QnaDAO qnaDAO;
 	
-	//@Test
+	@Test
 	public void addTest() throws Exception {
-		QnaDTO qnaDTO = new QnaDTO();
-		qnaDTO.setTitle("title");
-		qnaDTO.setContents("contents");
-		qnaDTO.setWriter("writer");
 		
-		int result = qnaDAO.add(qnaDTO);
+		for(int i=3;i<250;i++) {
+			QnaDTO qnaDTO = new QnaDTO();
+
+			qnaDTO.setTitle("title"+i);
+			qnaDTO.setContents("contents"+i);
+			qnaDTO.setWriter("writer"+i);
+			
+			int result = qnaDAO.add(qnaDTO);
+			
+			if(i%10==0) {
+				Thread.sleep(1000); //1초동안 멈추라는 뜻				
+			}
+		}
 		
-		assertEquals(1, result);
+		System.out.println("Insert Finish");
+		
+		//assertEquals(1, result);
 		
 	}
 	
-	@Test
+	//@Test
 	public void detailTest() throws Exception {
 		QnaDTO qnaDTO = new QnaDTO();
 		qnaDTO.setNum(1L);

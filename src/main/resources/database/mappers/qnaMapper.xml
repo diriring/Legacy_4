@@ -5,8 +5,40 @@
     
 <mapper namespace="com.java.s1.qna.QnaDAO">
 
-	<select id="list" resultType="QnaDTO">
-		SELECT * FROM QNA
+	<select id="list" parameterType="Pager" resultType="QnaDTO">
+		SELECT * FROM
+		(SELECT ROWNUM R, Q.* FROM
+		(SELECT * FROM QNA WHERE NUM>0 AND
+		<choose>
+			<when test="kind=='col1'">
+				TITLE
+			</when>
+			<when test="kind=='col2'">
+				CONTENTS
+			</when>
+			<otherwise>
+				WRITER
+			</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%' ORDER BY NUM DESC) Q)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		
+	</select>
+	
+	<select id="total" parameterType="Pager" resultType="Long">
+		SELECT COUNT(NUM) FROM QNA WHERE NUM>0 AND
+		<choose>
+			<when test="kind=='col1'">
+				TITLE
+			</when>
+			<when test="kind=='col2'">
+				CONTENTS
+			</when>
+			<otherwise>
+				WRITER
+			</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%'
 	</select>
 	
 	<select id="detail" parameterType="QnaDTO" resultType="QnaDTO">

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.s1.util.Pager;
+
 @Service
 public class QnaService {
 	
@@ -12,8 +14,11 @@ public class QnaService {
 	private QnaDAO qnaDAO;
 	
 	//list
-	public List<QnaDTO> list() throws Exception {
-		return qnaDAO.list();
+	public List<QnaDTO> list(Pager pager) throws Exception {
+		Long totalCount = qnaDAO.total(pager);
+		pager.makeRow();
+		pager.makeNum(totalCount);
+		return qnaDAO.list(pager);
 	}
 	
 	//detail
