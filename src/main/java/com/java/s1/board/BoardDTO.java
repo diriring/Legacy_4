@@ -1,21 +1,21 @@
-package com.java.s1.notice;
+package com.java.s1.board;
 
 import java.sql.Date;
 
-public class NoticeDTO {
+public class BoardDTO {
 	
-	private Long noticeNum;
+	private Long num;
 	private String title;
 	private String contents;
 	private String writer;
 	private Date regDate;
 	private Integer hit;
 	
-	public Long getNoticeNum() {
-		return noticeNum;
+	public Long getNum() {
+		return num;
 	}
-	public void setNoticeNum(Long noticeNum) {
-		this.noticeNum = noticeNum;
+	public void setNum(Long num) {
+		this.num = num;
 	}
 	public String getTitle() {
 		return title;
@@ -47,5 +47,5 @@ public class NoticeDTO {
 	public void setHit(Integer hit) {
 		this.hit = hit;
 	}
-	
+
 }

@@ -11,16 +11,12 @@
 <link rel="stylesheet" href="../resources/css/list.css">
 </head>
 <body>
-
-	<c:import url="../template/header.jsp"></c:import>
-
-
-
-	<div class="table-container">
 	
-		<h1 class="title">BankBook List Page</h1>
-
-		<!--검색창-->
+	<c:import url="../template/header.jsp"></c:import>
+	
+	<div class="table-container">
+		<h1>${board} List Page</h1>
+		
 		<div>
 			<!--Controller에 list method가 get방식이기 때문, 그리고 검색할때 넘어가는 param에 보안이 필요한 내요잉 없음-->
 			<form action="./list" method="get">
@@ -35,22 +31,25 @@
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<table class="table-basic">
 			<tr>
-				<th>상품번호</th><th>상품명</th><th>이자율</th><th>판매</th>
+				<th>제목</th><th>작성자</th><th>작성날짜</th><th>조회수</th>
 			</tr>
-			<c:forEach items="${list}" var="book">
+			<c:forEach items="${list}" var="dto">
 				<tr>
-					<td>${book.bookNumber}</td>
-					<td><a href="./detail?bookNumber=${book.bookNumber}">${book.bookName}</a></td>
-					<td>${book.bookRate}</td>
-					<td>${book.bookSale}</td>
-				</tr>	
-			</c:forEach>	
+					<td><a href="./detail?num=${dto.num}">
+						<c:catch>					
+							<c:forEach begin="1" end="${dto.depth}">&nbsp;</c:forEach>
+						</c:catch>
+					${dto.title}</a></td>
+					<td>${dto.writer}</td>
+					<td>${dto.regDate}</td>
+					<td>${dto.hit}</td>
+				</tr>
+			</c:forEach>
 		</table>
-	
-	
+		
 		<div>
 			<c:if test="${pager.pre}">
 				<a href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">PREVIEW</a>
@@ -67,8 +66,5 @@
 		
 		<a href="./add">ADD</a>
 	</div>
-	
-
-	
 </body>
 </html>

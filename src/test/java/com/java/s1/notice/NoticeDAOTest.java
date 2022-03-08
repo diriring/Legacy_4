@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.java.s1.MyJunitTest;
+import com.java.s1.board.notice.NoticeDAO;
+import com.java.s1.board.notice.NoticeDTO;
 
 public class NoticeDAOTest extends MyJunitTest {
 
@@ -21,8 +23,8 @@ public class NoticeDAOTest extends MyJunitTest {
 	
 	//@Test
 	public void listTest() throws Exception {
-		List<NoticeDTO> ar = noticeDAO.list();
-		assertEquals(0, ar.size());
+		//List<NoticeDTO> ar = noticeDAO.list();
+		//assertEquals(0, ar.size());
 	}
 	
 	//@Test
@@ -37,18 +39,18 @@ public class NoticeDAOTest extends MyJunitTest {
 		assertNotEquals(0, result);
 	}
 	
-	@Test
+	//@Test
 	public void detailTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setNoticeNum(3L);
-		noticeDTO = noticeDAO.detail(noticeDTO);
+		//noticeDTO.setNoticeNum(3L);
+		//noticeDTO = noticeDAO.detail(noticeDTO);
 		assertNotNull(noticeDTO);
 	}
 	
-	@Test
+	//@Test
 	public void deleteTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setNoticeNum(3L);
+		//noticeDTO.setNoticeNum(3L);
 		int result = noticeDAO.delete(noticeDTO);
 		assertEquals(1, result);
 	}
