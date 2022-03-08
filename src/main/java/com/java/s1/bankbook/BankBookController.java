@@ -57,16 +57,40 @@ public class BankBookController {
 	
 	//detail
 	@RequestMapping(value="detail", method=RequestMethod.GET)
-	public void detail(BankBookDTO bankBookDTO, Model model) throws Exception {
+	public String detail(BankBookDTO bankBookDTO, Model model) throws Exception {
 		bankBookDTO = bankBookService.detail(bankBookDTO);
-		model.addAttribute("dto", bankBookDTO);
+		
+		//조회가 성공하면 출력
+		//조회가 실패하면 alert로 없는 번호입니다 -> list로 이동
+		//common/result.jsp 활용
+		
+		String path = "common/result";
+
+		if(bankBookDTO != null) {
+			path = "bankbook/detail";
+			model.addAttribute("dto", bankBookDTO);
+		}else {
+			model.addAttribute("path", "./list");
+			model.addAttribute("message", "조회에 실패했습니다");
+		}		
+		
+		return path;
 	}
 	
 	//delete
 	@RequestMapping(value="delete", method=RequestMethod.GET)
-	public String delete(BankBookDTO bankBookDTO) throws Exception {
+	public String delete(BankBookDTO bankBookDTO, Model model) throws Exception {
 		int result = bankBookService.delete(bankBookDTO);
-		return "redirect:./list";
+		String path = "common/result";
+		
+		if(result != 0) {
+			model.addAttribute("message", "삭제 성공했습니다");
+			model.addAttribute("path", "./list");
+		}else {
+			model.addAttribute("message", "삭제 실패했습니다");
+			model.addAttribute("path", "./list");
+		}
+		return path;
 	}
 	
 }

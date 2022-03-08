@@ -14,11 +14,12 @@
 
 	<h1>${board} Add Page</h1>
 		
-	<form action="./add" method="POST">
-		Title <input type="text" name="title">
-		Writer <input type="text" name="writer">
+	<form action="./add" method="POST" id="frm">
+		Title <input type="text" id="title" name="title">
+		Writer <input type="text" id="writer" name="writer">
 		Contents <textarea name="contents" rows="10" cols=""></textarea>
-		<button type="submit">ADD</button>
+		<button type="button" id="btn">ADD</button>
 	</form>
+	<script src="../resources/js/noticeAdd.js"></script>
 </body>
 </html>
