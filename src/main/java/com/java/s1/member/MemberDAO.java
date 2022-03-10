@@ -11,7 +11,12 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.java.s1.member.MemberDAO.";
 	
+	public int addFile(MemberFileDTO memberFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"addFile", memberFileDTO);
+	}
+	
 	public MemberDTO mypage(MemberDTO memberDTO) throws Exception {
+//		System.out.println(memberDTO.getId());
 		return sqlSession.selectOne(NAMESPACE+"mypage", memberDTO);
 	}
 	

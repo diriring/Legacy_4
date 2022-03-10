@@ -4,11 +4,32 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.java.s1.member.MemberDAO">
+
+	<insert id="addFile" parameterType="MemberFileDTO">
+		INSERT INTO MEMBERFILE (FILENUM, ID, FILENAME, ORINAME)
+		VALUES (FILE_SEQ.NEXTVAL, #{id}, #{fileName}, #{oriName})
+	</insert>
 	
-	<select id="mypage" parameterType="MemberDTO" resultType="MemberDTO">
-	SELECT ID, NAME, PHONE, EMAIL FROM MEMBER
-	WHERE ID=#{id}
+	<select id="mypage" parameterType="MemberDTO" resultMap="mypageResult">
+	SELECT ID, M.NAME, M.PHONE, M.EMAIL, MF.FILENUM, MF.FILENAME, MF.ORINAME
+	FROM MEMBER M
+	    LEFT JOIN
+	    MEMBERFILE MF
+	    USING(ID)
+	WHERE ID = #{id}
 	</select>
+	
+	<resultMap type="MemberDTO" id="mypageResult">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="email" property="email"/>
+		<association property="memberFileDTO" javaType="MemberFileDTO">
+			<id column="fileNum" property="fileNum"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</association>
+	</resultMap>
 	
 	<select id="login" resultType="MemberDTO" parameterType="MemberDTO">
 	SELECT ID, NAME FROM MEMBER
