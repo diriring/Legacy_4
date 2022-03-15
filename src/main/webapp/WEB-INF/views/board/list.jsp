@@ -63,8 +63,9 @@
 				<a href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">NEXT</a>
 			</c:if>
 		</div>
-		
-		<a href="./add">ADD</a>
+		<c:if test="${not empty member}">
+			<a href="./add">ADD</a>
+		</c:if>
 	</div>
 </body>
 </html>
