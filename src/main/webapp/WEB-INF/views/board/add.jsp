@@ -14,10 +14,16 @@
 
 	<h1>${board} Add Page</h1>
 		
-	<form action="./add" method="POST" id="frm">
+	<form action="./add" method="POST" id="frm" enctype="multipart/form-data">
 		Title <input type="text" id="title" name="title">
 		Writer <input type="text" id="writer" name="writer">
 		Contents <textarea name="contents" rows="10" cols=""></textarea>
+		
+		<div>
+			<input type="file" name="files">
+			<input type="file" name="files">
+			<input type="file" name="files">
+		</div>
 		<button type="button" id="btn">ADD</button>
 	</form>
 	<script src="../resources/js/noticeAdd.js"></script>

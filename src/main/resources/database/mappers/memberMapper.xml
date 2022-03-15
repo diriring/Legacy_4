@@ -5,6 +5,10 @@
     
 <mapper namespace="com.java.s1.member.MemberDAO">
 
+	<select id="detailFile" parameterType="MemberFileDTO" resultType="MemberFileDTO">
+		SELECT * FROM MEMBERFILE WHERE FILENUM=#{fileNum}
+	</select>
+
 	<insert id="addFile" parameterType="MemberFileDTO">
 		INSERT INTO MEMBERFILE (FILENUM, ID, FILENAME, ORINAME)
 		VALUES (FILE_SEQ.NEXTVAL, #{id}, #{fileName}, #{oriName})

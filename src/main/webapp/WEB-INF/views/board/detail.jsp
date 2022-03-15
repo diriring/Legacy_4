@@ -16,6 +16,11 @@
 	<h3>title : ${dto.title}</h3>
 	<h3>writer : ${dto.writer}</h3>
 	<h3>${dto.contents}</h3>
+	<div>
+		<c:forEach items="${dto.fileDTOs}" var="f">
+			<a href="./photoDown?fileNum=${f.fileNum}">${f.oriName}<br></a>
+		</c:forEach>
+	</div>
 	
 	<a href="./list">List</a>
 	<a href="./update?num=${dto.num}">UPDATE</a>

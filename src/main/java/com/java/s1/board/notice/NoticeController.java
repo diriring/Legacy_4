@@ -8,8 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.java.s1.board.BoardDTO;
+import com.java.s1.board.BoardFileDTO;
 import com.java.s1.board.qna.QnaDTO;
 import com.java.s1.util.Pager;
 
@@ -25,9 +28,18 @@ public class NoticeController {
 		return "notice";
 	}
 	
+	@RequestMapping(value="photoDown", method=RequestMethod.GET)
+	public ModelAndView photoDown(BoardFileDTO boardFileDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		boardFileDTO = noticeService.detailFile(boardFileDTO);
+		mv.addObject("file", boardFileDTO);
+		mv.setViewName("fileDown");
+		return mv;
+	}
+	
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public String add(NoticeDTO noticeDTO) throws Exception {
-		int result = noticeService.add(noticeDTO);
+	public String add(NoticeDTO noticeDTO, MultipartFile [] files) throws Exception {
+		int result = noticeService.add(noticeDTO, files);
 		return "redirect:./list";
 	}
 	
