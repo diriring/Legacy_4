@@ -71,5 +71,9 @@ public class QnaDAO implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"addFile", boardFileDTO);
 	}
+	
+	public List<BoardFileDTO> listFile(BoardDTO boardDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"listFile", boardDTO);
+	}
 
 }

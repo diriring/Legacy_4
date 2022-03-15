@@ -70,7 +70,17 @@ public class QnaService implements BoardService {
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return qnaDAO.delete(boardDTO);
+		List<BoardFileDTO> ar = qnaDAO.listFile(boardDTO);
+		int result = qnaDAO.delete(boardDTO);
+		
+		if(result > 0) {
+			//for(Collection에서 꺼낼 타입명 변수명: Collection의 변수명) {}
+			for(BoardFileDTO dto:ar) {				
+				boolean check = fileManager.remove("resources/upload/qna/", dto.getFileName());
+			}
+		}
+		
+		return result;
 	}
 	
 	public int reply(QnaDTO qnaDTO) throws Exception {
