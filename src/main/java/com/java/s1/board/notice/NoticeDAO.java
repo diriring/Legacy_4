@@ -58,7 +58,6 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.selectOne(NAMESPACE+"total", pager);
 	}
 
-	@Override
 	public List<BoardFileDTO> listFile(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"listFile", boardDTO);

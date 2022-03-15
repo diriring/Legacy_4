@@ -5,8 +5,6 @@ import java.util.List;
 import com.java.s1.util.Pager;
 
 public interface BoardDAO {
-	//listFile
-	public List<BoardFileDTO> listFile(BoardDTO boardDTO) throws Exception;
 	
 	//addFile
 	public int addFile(BoardFileDTO boardFileDTO) throws Exception;
