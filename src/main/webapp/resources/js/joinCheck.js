@@ -4,6 +4,7 @@
 
 const checkAll = document.getElementById('checkAll');
 const check = document.getElementsByClassName('check');
+const rules = document.getElementById('rules');
 const btn = document.getElementById('btn');
 
 checkAll.addEventListener("click", function() {
@@ -19,17 +20,17 @@ checkAll.addEventListener("click", function() {
     }
 })
 
-for(i of check) {
-    i.addEventListener("click", function() {
-        let final = true
-        for(i of check) {
-            if(!i.checked) {
-                final=false
-            }
-        }
-        checkAll.checked = final;
-    })
-}
+rules.addEventListener("click", function(event) {
+	let final = true;
+	for(i of check) {
+		if(!i.checked) {
+		final = false;
+		}
+	};
+	checkAll.checked = final;
+});
+
+
 
 btn.addEventListener("click", function() {
     if(checkAll.checked) {

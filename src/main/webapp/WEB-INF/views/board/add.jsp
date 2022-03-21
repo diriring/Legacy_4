@@ -19,13 +19,21 @@
 		Writer <input type="text" id="writer" name="writer" value="${member.id}" readonly="readonly">
 		Contents <textarea name="contents" rows="10" cols=""></textarea>
 		
+		<div id="fileResult">
+			<!-- <div>
+				<input type="file" name="files">
+				<button type="button">DEL</button>
+			</div>
+			<input type="file" name="files">
+			<input type="file" name="files"> -->
+		</div>
 		<div>
-			<input type="file" name="files">
-			<input type="file" name="files">
-			<input type="file" name="files">
+			<button type="button" id="fileAdd">FileAdd</button>
+			<button type="button" class="del">Sample DEL</button>
 		</div>
 		<button type="button" id="btn">ADD</button>
 	</form>
 	<script src="../resources/js/noticeAdd.js"></script>
+	<script src="../resources/js/file.js"></script>
 </body>
 </html>
