@@ -19,4 +19,8 @@ public class NoticeReplyService {
 		return noticeReplyDAO.list(noticeReplyDTO);
 	}
 	
+	public int delete(NoticeReplyDTO noticeReplyDTO) throws Exception {
+		return noticeReplyDAO.delete(noticeReplyDTO);
+	}
+	
 }

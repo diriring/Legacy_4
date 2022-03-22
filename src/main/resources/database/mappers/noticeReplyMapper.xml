@@ -10,8 +10,12 @@
 	</insert>
 	
 	<select id="list" parameterType="NoticeReplyDTO" resultType="NoticeReplyDTO">
-		SELECT * FROM NOTICERPLY
+		SELECT * FROM NOTICEREPLY
 		WHERE NUM=#{num}
 		ORDER BY REPLYNUM DESC
 	</select>
+	
+	<delete id="delete" parameterType="NoticeReplyDTO">
+		DELETE NOTICEREPLY WHERE REPLYNUM=#{replyNum}
+	</delete>
 </mapper>

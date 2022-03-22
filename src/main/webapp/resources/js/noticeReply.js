@@ -3,14 +3,64 @@ const num = document.querySelector("#num");
 const writer = document.querySelector("#writer");
 const contents = document.querySelector("#contents");
 const replyResult = document.querySelector("#replyResult");
+const del = document.querySelectorAll(".del");
 
-result();
+//-----------------------------------------------
 
-function result () {
-    const xhttp = new XMLHttpRequest();
+// for(d of del) {
+//     d.addEventListener("click", function() {
+//         console.log("test");
+//     });
+// }
 
-    xhttp.open("GET", "../noticeReply/list");
-    xhttp.send();
+replyResult.addEventListener("click", function(event) {
+    let cn = event.target;
+
+    if(cn.classList.contains('del')) {
+        let replyNum = cn.getAttribute("data-num")
+        console.log(replyNum);
+
+        //url "/noticeReply/delete" method:post parameter: replyNum
+        //Controller 만들어서 ajax 요청이 가는지 확인하고 replyNum print해보기
+        const xhttp3 = new XMLHttpRequest();
+        xhttp3.open("POST", "../noticeReply/delete");
+        xhttp3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp3.send("replyNum="+replyNum);
+
+        xhttp3.onreadystatechange=function() {
+            if(this.readyState == 4 && this.status == 200) {
+                let result = this.responseText.trim();
+                if(result == '1') {
+                    alert("댓글이 삭제되었습니다")
+                    getList();
+                }else {
+                    alert("삭제에 실패했습니다")
+                }
+            }
+        }
+
+    }
+   
+});
+
+//-----------------------------------------------
+
+getList();
+
+function getList () {
+    const xhttp2 = new XMLHttpRequest();
+
+    //외부 js에서는 EL을 사용할 수 없음
+    xhttp2.open("GET", "../noticeReply/list?num="+num.value);
+    
+    xhttp2.send();
+
+    xhttp2.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            replyResult.innerHTML = this.responseText.trim();
+        }
+    }
 }
 
 reply.addEventListener("click", function() {
@@ -23,6 +73,7 @@ reply.addEventListener("click", function() {
     const xhttp = new XMLHttpRequest();
 
     //요청 정보 입력
+    //open('method형식', 'URL 주소')
     xhttp.open("POST", "../noticeReply/add");
 
     //요청 header 정보
@@ -34,15 +85,21 @@ reply.addEventListener("click", function() {
     xhttp.send("num="+num.value+"&writer="+writer.value+"&contents="+contents.value);
 
     //응답 처리
+    //readystate가 4이면 요청이 발송되고 응답이 끝난 상태
+    //status가 200이면 정상적으로 끝난 상태
+    //400이면 client 오류
+    //500이면 server 오류
     xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
             let result = this.responseText.trim();
             if(result == '1') {
                 alert('댓글이 등록되었습니다');
+                getList();
             }else {
                 alert('댓글 등록이 실패했습니다');
             }
         }
     }
 });
+
