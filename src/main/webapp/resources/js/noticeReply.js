@@ -6,6 +6,57 @@ const replyResult = document.querySelector("#replyResult");
 const del = document.querySelectorAll(".del");
 
 //-----------------------------------------------
+replyResult.addEventListener("click", function(event) {
+    if(event.target.classList.contains('update')) {
+        // event.target.classList.replace('update', 'reply')
+        // console.log(event.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling);
+        let num = event.target.getAttribute("data-index");
+        let replyNum = document.querySelector("#up"+num);
+
+        let text = replyNum.innerText;
+        replyNum.innerText='';
+
+        let tx = document.createElement("textarea");
+        tx.setAttribute("id", "update"+num);
+        tx.classList.add("reply");
+        tx.setAttribute("data-num", num);
+        tx.value=text;
+        replyNum.append(tx);
+    }
+});
+
+replyResult.addEventListener("change", function(event) {
+    if(event.target.classList.contains('reply')) {
+        let contents = event.target.value;
+        let replyNum = event.target.getAttribute("data-num");
+
+        let check = window.confirm("수정하시겠습니까"); //확인 : true 취소 : false return
+    
+        if(check) {
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "../noticeReply/update");
+            
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            
+            xhttp.send("replyNum="+replyNum+"&contents="+contents);
+    
+            xhttp.onreadystatechange=function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    let result = this.responseText.trim();
+                    if(result == '1') {
+                        alert("수정되었습니다");
+                        document.querySelector("#up"+replyNum).innerHTML=contents;
+                    }else {
+                        alert("수정 실패했습니다");
+                    }
+                }
+            }
+        }
+    }
+
+});
+
+//-----------------------------------------------
 
 // for(d of del) {
 //     d.addEventListener("click", function() {

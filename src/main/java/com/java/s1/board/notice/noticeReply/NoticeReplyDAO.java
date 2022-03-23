@@ -25,4 +25,8 @@ public class NoticeReplyDAO {
 		return sqlSession.delete(NAMESPACE+"delete", noticeReplyDTO);
 	}
 	
+	public int update(NoticeReplyDTO noticeReplyDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"update", noticeReplyDTO);
+	}
+	
 }

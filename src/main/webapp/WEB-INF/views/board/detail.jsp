@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
+<style type="text/css">
+	.bg {
+		background-color: gray;
+	}
+</style>
 </head>
 <body>
 

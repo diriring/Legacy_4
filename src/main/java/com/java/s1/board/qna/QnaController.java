@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -98,6 +99,16 @@ public class QnaController {
 	public String delete(QnaDTO qnaDTO) throws Exception {
 		int result = qnaService.delete(qnaDTO);
 		return "redirect:./list";
+	}
+	
+	@PostMapping("fileDelete")
+	public ModelAndView fileDelete(QnaFileDTO qnaFileDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(qnaFileDTO.getFileNum());
+		int result = qnaService.fileDelete(qnaFileDTO);
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
 	}
 
 }
